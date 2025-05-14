@@ -10,8 +10,8 @@ import (
 )
 
 type webfinger struct {
-	Subject string `json:"subject"`
-	Links   []link `json:"links"`
+	Subject *string `json:"subject"`
+	Links   []link  `json:"links"`
 }
 
 type link struct {
@@ -22,9 +22,10 @@ type link struct {
 func handler(config *Config) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		resource := r.URL.Query().Get("resource")
-		if resource == "" || !strings.HasPrefix(resource, "acct:") || !strings.Contains(resource, "@") {
-			http.Error(w, "resource not found", http.StatusNotFound)
-			return
+		var subject *string
+		if resource != "" && strings.HasPrefix(resource, "acct:") && strings.Contains(resource, "@") {
+			trimmedSubject := strings.TrimPrefix(resource, "acct:")
+			subject = &trimmedSubject
 		}
 
 		issuer := (&url.URL{
@@ -34,7 +35,7 @@ func handler(config *Config) http.HandlerFunc {
 		}).String()
 
 		response := webfinger{
-			Subject: strings.TrimPrefix(resource, "acct:"),
+			Subject: subject,
 			Links: []link{
 				{
 					Rel:  "http://openid.net/specs/connect/1.0/issuer",
