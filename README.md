@@ -13,5 +13,5 @@ docker run --detach \
   --env AK_HOST=auth.example.com \
   --env AK_APP_NAME=tailscale \
   --port 3000:3000 \
-  ghcr.io/gabe565/tailscale-authentik-webfinger
+  ghcr.io/evanmoelter/tailscale-authentik-webfinger
 ```

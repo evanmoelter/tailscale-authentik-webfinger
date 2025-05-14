@@ -1,4 +1,4 @@
-module gabe565.com/tailscale-authentik-webfinger
+module evanmoelter.com/tailscale-authentik-webfinger
 
 go 1.24.2
 

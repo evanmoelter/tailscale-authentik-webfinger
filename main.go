@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"gabe565.com/tailscale-authentik-webfinger/cmd"
+	"evanmoelter.com/tailscale-authentik-webfinger/cmd"
 	"gabe565.com/utils/cobrax"
 )
 
