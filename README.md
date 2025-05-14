@@ -15,3 +15,7 @@ docker run --detach \
   --port 3000:3000 \
   ghcr.io/evanmoelter/tailscale-authentik-webfinger
 ```
+
+## Credit
+
+Forked from https://github.com/gabe565/tailscale-authentik-webfinger. Many thanks!
